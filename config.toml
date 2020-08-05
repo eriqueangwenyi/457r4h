@@ -1,7 +1,7 @@
-baseURL = "https://example.com"
+baseURL = "https://eriqueangwenyi.github.io/"
 languageCode = "en"
 defaultContentLanguage = "en"
-title = "cd /home/"
+title = "Astrah"
 theme = "fastbyte"
 
 paginate = 12
@@ -52,7 +52,7 @@ disqusShortname = "Astrah"
     pinterest_verification = ""
     baidu_verification = ""
 
-    avatar = "/images/me/rick.jpg" #comment it to use gravatar
+    #avatar = "/images/me/rick.jpeg" #comment it to use gravatar
     socialShare = true
 
     description = "" # site description
