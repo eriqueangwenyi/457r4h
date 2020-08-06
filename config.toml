@@ -1,14 +1,14 @@
-baseURL = "https://eriqueangwenyi.github.io/"
+baseURL = "https://eriqueangwenyi.github.io"
 languageCode = "en"
 defaultContentLanguage = "en"
 title = "Astrah"
-theme = "fastbyte"
+theme = "KeepIt"
 
 paginate = 12
 enableEmoji = true
 enableRobotsTXT = true
 googleAnalytics = ""
-disqusShortname = "Astrah"
+disqusShortname = "yourdiscussshortname"
 
 [sitemap]
   changefreq = "monthly"
@@ -40,9 +40,9 @@ disqusShortname = "Astrah"
     weight = 4
 
 [params]
-    since = 2012
+    since = 2018
     author = "Astrah"               # Author's name
-    subtitle = "Astrah"       # Subtitle
+    subtitle = "I roll with Writeups and Articles"       # Subtitle
     cdn_url = ""           # Base CDN URL
     home_mode = "" # post or other
 
@@ -52,7 +52,7 @@ disqusShortname = "Astrah"
     pinterest_verification = ""
     baidu_verification = ""
 
-    avatar = "/images/me/avatar.jpeg" #comment it to use gravatar
+    avatar = "/images/me/squidward.jpeg" #comment it to use gravatar
     socialShare = true
 
     description = "" # site description
@@ -61,7 +61,7 @@ disqusShortname = "Astrah"
     license= 'Released under <a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
 
 [params.gravatar]
-    email = "eriqueangwenyi@gmail.com"   #uncomment and insert your email address to use gravatar
+    #email = ""   #uncomment and insert your email address to use gravatar
 
 
 [params.social]
