@@ -42,7 +42,7 @@ disqusShortname = "yourdiscussshortname"
 [params]
     since = 2018
     author = "Astrah"               # Author's name
-    subtitle = "I roll with Writeups and Articles"       # Subtitle
+    subtitle = "I roll with Tech Writeups and Articles"       # Subtitle
     cdn_url = ""           # Base CDN URL
     home_mode = "" # post or other
 
