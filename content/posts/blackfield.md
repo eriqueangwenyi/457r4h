@@ -1,7 +1,7 @@
 ---
 author:
   name: "Astrah"
-date: 2020-10-05
+date: 2020-10-06
 linktitle: Blackfield Windows
 type:
 - post
