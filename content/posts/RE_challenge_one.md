@@ -8,9 +8,8 @@ type:
 - posts
 categories:
 - Reversing
-- Ctf
-- Hackthebox
 tags:
+- Ctf
 - RE
 - Reversing
 title: Reverse Engineering part 1
