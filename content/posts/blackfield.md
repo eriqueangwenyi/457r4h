@@ -58,7 +58,7 @@ Some Interesting folders found were discovered here, and they seemed to be named
 The next step was copying these names in a text file, then checking the content of the folders using **“recurse”** command.
 Following after with **"dir"** (to show directories of each user) but all directories were empty
 ![](/images/black5.png)
-Since now we had a list users, the next step was using  **->impackets-getnpusers.py**. This is a very useful tool that requests tgt account tickets, but why would the Domain Controller just hand over the TGT? because this script will attempt to list and get TGTs for those users that have the property: **'Do not require Kerberos preauthentication' set (UF_DONT_REQUIRE_PREAUTH)**. \
+Since now we had a list users, the next step was using  **->impackets-getnpusers.py**. This is a very useful tool that requests As-rep tickets, but why would the Domain Controller just hand over the tickets? because this script will attempt to list and get TGTs for those users that have the property: **'Do not require Kerberos preauthentication' set (UF_DONT_REQUIRE_PREAUTH)**. \
 Another question is, why would this flag be set for an account if it will expose the account to an attack? after  research the conclusion was  **Legacy Systems**. That’s the only time this flag would be set if these are older systems which are unable to support kerberos authentication to AD. \
 For further reading on kerberos preauth, click on the link below
 http://www.selfadsi.org/ads-attributes/user-userAccountControl.htm#UF_DONT_REQUIRE_PREAUTH
